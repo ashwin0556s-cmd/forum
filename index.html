@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,29 +7,9 @@
     <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>KnowledgeHub</title>
-    <link rel="stylesheet" href="style.css" />
+      rel="stylesheet"/>
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-    ></script>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-SL1P3WE8R7"
-    ></script>
+    <script type="module" src="firebase-index.js" defer></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -41,57 +20,14 @@
       gtag("config", "G-SL1P3WE8R7");
     </script>
   </head>
-
   <body>
     <header>
       <div class="logo">◉ KnowledgeHub</div>
       <nav>
         <a href="index.html">Home</a>
         <a href="forum.html">Forum</a>
-        <a href="#">Login</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <h1>Grow the World’s Knowledge ✦</h1>
-      <p>Ask, share, and explore ideas with people worldwide.</p>
-      <a href="forum.html" class="btn">✧ Ask a Question</a>
-    </section>
-
-    <footer>
-      <p>© 2026 KnowledgeHub | Made with ♥</p>
-    </footer>
-  </body>
-</html>
-
-    />
-
-    <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SL1P3WE8R7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SL1P3WE8R7');
-</script>
-    <!-- Privacy-friendly analytics by Plausible -->
-<script async src="https://plausible.io/js/pa-Ob_RBlSC-9QZpmtXF9qdP.js"></script>
-<script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
-</script>
-
-  </head>
-
-  <body>
-    <header>
-      <div class="logo">◉ KnowledgeHub</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="forum.html">Forum</a>
-        <a href="#">Login</a>
+        <a href="auth.html" id="login-link">Login</a>
+        <a href="dashboard.html" id="dashboard-link" style="display:none;">Dashboard</a>
       </nav>
     </header>
 

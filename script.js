@@ -112,61 +112,53 @@ function renderPosts() {
     forumContainer.appendChild(postElement);
   });
 
-  // Add event listeners
-  addEventListeners();
+  // Setup delegation
+  setupEventDelegation();
 }
 
-// Add event listeners to posts
-function addEventListeners() {
-  // Like buttons
-  document.querySelectorAll(".like-btn").forEach((btn) => {
-    btn.addEventListener("click", handleLike);
-  });
-
-  // Comment toggle buttons
-  document.querySelectorAll(".comment-toggle").forEach((btn) => {
-    btn.addEventListener("click", handleCommentToggle);
-  });
-
-  // Comment submit buttons
-  document.querySelectorAll(".comment-submit").forEach((btn) => {
-    btn.addEventListener("click", handleCommentSubmit);
-  });
-
-  // Comment input enter key
-  document.querySelectorAll(".comment-box input").forEach((input) => {
-    input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        const postId = parseInt(input.dataset.postId);
-        handleCommentSubmitForPost(postId, input.value);
-      }
-    });
-  });
-
-  // Delete buttons
-  document.querySelectorAll(".delete-btn").forEach((btn) => {
-    btn.addEventListener("click", handleDelete);
-  });
+// Single event delegation for all actions
+function setupEventDelegation() {
+  const forumContainer = document.querySelector(".forum-container");
+  forumContainer.addEventListener("click", handleForumAction);
+  forumContainer.addEventListener("keypress", handleKeyPress);
 }
 
-// Handle like
-function handleLike(e) {
-  const postId = parseInt(e.target.dataset.id);
+function handleForumAction(e) {
+  const btn = e.target.closest('[data-id]');
+  if (!btn) return;
+
+  const postId = parseInt(btn.dataset.id);
   const posts = getPosts();
-  const post = posts.find((p) => p.id === postId);
+  const post = posts.find(p => p.id === postId);
+  if (!post) return;
 
-  if (post) {
+  if (btn.matches('.like-btn')) {
     post.likes++;
     savePosts(posts);
-    renderPosts();
+    updatePost(postId);
+  } else if (btn.matches('.comment-toggle')) {
+    toggleComments(postId);
+  } else if (btn.matches('.delete-btn')) {
+    if (confirm("Delete post?")) {
+      deletePost(postId);
+    }
   }
 }
 
-// Handle comment toggle
-function handleCommentToggle(e) {
-  const postId = e.target.dataset.id;
-  const commentsSection = document.getElementById(`comments-${postId}`);
+function handleKeyPress(e) {
+  if (e.key === 'Enter' && e.target.matches('.comment-box input')) {
+    const postId = parseInt(e.target.dataset.postId);
+    const text = e.target.value.trim();
+    if (text) {
+      addComment(postId, text);
+      e.target.value = '';
+    }
+  }
+}
 
+// Helper functions (legacy, will be removed later)
+function toggleComments(postId) {
+  const commentsSection = document.getElementById(`comments-${postId}`);
   if (commentsSection.style.display === "none") {
     commentsSection.style.display = "block";
   } else {
@@ -174,25 +166,22 @@ function handleCommentToggle(e) {
   }
 }
 
-// Handle comment submit (click)
-function handleCommentSubmit(e) {
-  const input = e.target.previousElementSibling;
-  const postId = parseInt(input.dataset.postId);
-  const commentText = input.value.trim();
-
-  if (commentText) {
-    addComment(postId, commentText);
-    input.value = "";
-  }
+function deletePost(postId) {
+  let posts = getPosts();
+  posts = posts.filter((p) => p.id !== postId);
+  savePosts(posts);
+  const postElement = document.querySelector(`[data-id="${postId}"]`).closest('.post');
+  if (postElement) postElement.remove();
 }
 
-// Handle comment submit for enter key
-function handleCommentSubmitForPost(postId, commentText) {
-  if (commentText.trim()) {
-    addComment(postId, commentText.trim());
-    const input = document.querySelector(`input[data-post-id="${postId}"]`);
-    if (input) input.value = "";
-  }
+function updatePost(postId) {
+  const postElement = document.querySelector(`.post[data-id="${postId}"]`);
+  if (!postElement) return;
+  const posts = getPosts();
+  const post = posts.find(p => p.id === postId);
+  if (!post) return;
+  const newElement = createPostElement(post);
+  postElement.parentNode.replaceChild(newElement, postElement);
 }
 
 // Add comment to post
@@ -208,7 +197,7 @@ function addComment(postId, text) {
       timestamp: new Date().toISOString(),
     });
     savePosts(posts);
-    renderPosts();
+    updatePost(postId);
 
     // Keep comments section open after adding
     setTimeout(() => {

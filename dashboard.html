@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - KnowledgeHub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
+  <script type="module" src="firebase-dashboard.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo">◉ KnowledgeHub</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="forum.html">Forum</a>
+      <a href="auth.html" id="logout-btn">Logout</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Your Dashboard</h1>
+    <div id="user-stats" class="stats-container">
+      <!-- Stats loaded dynamically -->
+    </div>
+    <div id="user-posts">
+      <h2>Your Posts</h2>
+      <!-- Posts loaded -->
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 KnowledgeHub</p>
+  </footer>
+</body>
+</html>
+

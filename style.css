@@ -134,3 +134,83 @@ footer {
   text-align: center;
   padding: 20px;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 12px 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header .logo {
+    font-size: 20px;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+
+  .hero {
+    height: 70vh;
+    padding: 0 20px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .forum-container {
+    width: 95%;
+    margin: 30px 10px;
+  }
+
+  .post-box, .post {
+    padding: 15px;
+  }
+
+  .post-box textarea {
+    height: 80px;
+  }
+
+  .btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  .comment-box {
+    flex-direction: column;
+  }
+
+  .comment-box button {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .actions span {
+    display: block;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  header .logo {
+    font-size: 18px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

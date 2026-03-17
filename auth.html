@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth - KnowledgeHub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
+  <script type="module" src="firebase-auth.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo">◉ KnowledgeHub</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="forum.html">Forum</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Login to KnowledgeHub</h1>
+    <p>Connect with the community</p>
+
+    <div class="auth-container">
+      <!-- Login Form -->
+      <div id="login-form" class="auth-form">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-btn" class="btn">Login</button>
+        <p>Don't have account? <a href="#" id="switch-signup">Sign up</a></p>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signup-form" class="auth-form" style="display:none;">
+        <h2>Create Account</h2>
+        <input type="text" id="signup-name" placeholder="Full Name">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button id="signup-btn" class="btn">Sign Up</button>
+        <p>Have account? <a href="#" id="switch-login">Login</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 KnowledgeHub</p>
+  </footer>
+</body>
+</html>
+
