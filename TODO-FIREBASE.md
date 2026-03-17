@@ -1,23 +1,19 @@
-# Firebase Forum Migration TODO
+# Firebase Integration TODO
 
 ## Completed
-- [x] Firebase config file
+- [x] Initial Firebase files + responsive
 
-## Plan Steps
-1. Install Firebase SDK (no npm, CDN modules)
-2. auth.html (signup/login)
-3. dashboard.html (user stats)
-4. Refactor forum to firebase-forum.js
-5. Update index/forum.html for auth
-6. Firestore security rules (manual)
-7. Test auth/posts/likes (no duplicates)
+## To Do
+- [x] 1. Read auth.html, firebase-auth.js, dashboard.html, firebase-dashboard.js, firebase-index.js, firebase-config.js
 
-## Progress
-- [x] firebase-config.js
-- [x] auth.html + firebase-auth.js (signup/login, user doc)
-- [x] dashboard.html + firebase-dashboard.js (stats, user posts realtime)
-- [x] firebase-forum.js (Firestore posts/comments/likes, auth guards)
-- [x] index/forum.html integrated Firebase modules/auth nav
-
-
-
+## Completed
+- [x] 2. auth.html + firebase-auth.js: Signup/Login with confirm pass, redirects, random username
+- [ ] 3. firebase-auth.js: createUser + set users/{uid}, signIn, errors
+- [ ] 4. Nav all pages: Home/Forum/Signup (post-auth: Dashboard/Logout)
+- [ ] 5. firebase-index.js: Public home + auth status
+- [ ] 6. Forum: Random profile name, nested comments (reply)
+- [ ] 7. Dashboard: User stats table (posts/comments/likes/login time), user list
+- [ ] 8. Like fix: Single per user (already)
+- [ ] 9. Firestore Rules secure
+- [ ] 10. Test full flow + Lighthouse
+- [ ] 11. Update TODO + complete

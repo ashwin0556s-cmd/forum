@@ -12,12 +12,16 @@
   <body>
     <header>
       <div class="logo">◉ KnowledgeHub</div>
-<nav>
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
+      <nav>
+        <a href="index.html" id="home-link">Home</a>
+        <a href="forum.html">Forum</a>
+        <a href="auth.html" id="login-link" style="display:none;">Login</a>
+        <a href="dashboard.html" id="dashboard-link">Dashboard</a>
         <a href="#" id="logout-btn">Logout</a>
       </nav>
     </header>
+
+    <script type="module" src="firebase-nav.js" defer></script>
 
     <section class="forum-container">
       <div class="post-box">
