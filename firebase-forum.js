@@ -1,7 +1,7 @@
 // Firebase Forum (replaces script.js)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js';
-import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, updateDoc, doc, increment, getDoc, where, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, updateDoc, doc, increment, getDoc, where, serverTimestamp, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
 import { firebaseConfig } from './firebase-config.js';
 
 const app = initializeApp(firebaseConfig);
@@ -57,7 +57,7 @@ function createPostElement(post) {
     <div class="actions">
       <span class="like-btn" data-id="${post.id}">♡ Like (${post.likeCount || 0})</span>
       <span class="comment-toggle" data-id="${post.id}">💬 Comment</span>
-      ${isOwner ? '<span class="delete-btn" data-id="' + post.id + '">🗑 Delete</span>' : ''}
+      <span class="delete-btn" data-id="${post.id}">🗑 Delete</span> <!-- Owner only backend check -->
     </div>
     <div class="comments-section" id="comments-${post.id}" style="display: none;">
       <div class="comments-list"></div>
@@ -149,17 +149,12 @@ async function handleCommentSubmit(input) {
 
 // Delete (own post only)
 async function handleDelete(postId) {
-  const postRef = doc(db, 'posts', postId);
-  const postSnap = await getDoc(postRef);
-  if (postSnap.data().userId !== currentUser.uid) return;
+  if (!confirm('Delete post?')) return;
 
-  // Delete likes and comments first? Cascade or manual
+  await deleteDoc(doc(db, 'posts', postId));
   await updateDoc(doc(db, 'users', currentUser.uid), {
     postCount: increment(-1)
   });
-
-  // Simple delete
-  // deleteDoc(postRef); 
 }
 
 // Toggle comments
